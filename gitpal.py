@@ -2,7 +2,8 @@
 
 import github
 
-def makeProject(name, description, license):
+
+def make_project(name, description, license):
     """Creates a new github project with the information provided
 
     Args:
@@ -16,6 +17,7 @@ def makeProject(name, description, license):
     """
     # TODO: Implement
 
+
 def banner():
     """Creates the banner for the CLI prompt.
 
@@ -24,6 +26,7 @@ def banner():
     """
     handle = open('resources/banner.txt', mode='rt', encoding='utf-8')
     return handle.read()
+
 
 def prompt(banner, options):
     """Displays a CLI prompt that asks the user for information on the side
@@ -39,25 +42,26 @@ def prompt(banner, options):
     print(banner)
     print("Let's make sure you don't forget that idea!\n")
     correct = False
+    cli_prompt = '>> '
     while not correct:
         print('Please enter project name:')
-        name = input('>> ')
+        name = input(cli_prompt)
         print('Project description:')
-        description = input('>> ')
+        description = input(cli_prompt)
         print('Choose a license (Enter the number):')
         print('  1. MIT')
         print('  2. Apache 2.0')
         print('  3. GPL')
-        license = input('>> ') #TODO: Validate
+        license = input(cli_prompt) #TODO: Validate
         print('Lets review your input.\n')
         print('  Name: ', name)
         print('  Description: ', description)
         print('  License: ', options[int(license)])
         print('Is everything correct? (yes, no)')
-        ok = input('>> ')
-        if ok.lower() == 'yes':
+        ok = input(cli_prompt).lower()
+        if ok == 'yes' or ok == 'y':
             correct = True
-            makeProject(name, description, license)
+            make_project(name, description, license)
             print('Great, visit your github profile https://www.github.com/')
         else:
             print('Woops, lets go over the information again!')

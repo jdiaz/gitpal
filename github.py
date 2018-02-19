@@ -3,11 +3,13 @@
 #TODO: implement this module
 class Github(object):
 
-    def putFileInRepo():
+
+    def put_file_in_repo(file):
         # TODO: implement
+        return None
 
 
-    def createRepo(name, description, license):
+    def create_repo(name, description, license):
         """Creates a new github repository with the given specifications
 
         Args:
