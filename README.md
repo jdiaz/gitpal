@@ -16,3 +16,5 @@ answer is no, then **Gitpal** is your solution.
 **GitPal will automatically create a github repository for you such that you are
 forced to work on your idea.** At the very least you'll have a reliable place to
 store it.
+
+![](demo.gif)
