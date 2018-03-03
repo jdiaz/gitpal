@@ -49,9 +49,7 @@ def prompt(banner, options):
         print('Project description:')
         description = input(cli_prompt)
         print('Choose a license (Enter the number):')
-        print('  1. MIT')
-        print('  2. Apache 2.0')
-        print('  3. GPL')
+        print(options_menu(options))
         license = input(cli_prompt) #TODO: Validate
         print('Lets review your input.\n')
         print('  Name: ', name)
@@ -67,11 +65,31 @@ def prompt(banner, options):
             print('Woops, lets go over the information again!')
 
 
+def options_menu(options):
+    """Creates string representation of the licenses support by gitpal.
+
+    Args:
+        options: A dictionary of numbers to license name
+
+    Returns:
+        A string showing the options menu
+    """
+    buf = []
+    for key, value in options.items():
+        buf.append('  {}. {}\n'.format(key, value))
+    return ''.join(buf)
+
+
 def main():
     options = {
-        1: 'MIT',
-        2: 'Apache 2.0',
-        3: 'GPL'
+        1: 'Apache 2.0',
+        2: 'BSD 3-Clause "New" pr "Revised" license',
+        3: 'GNU General Public License (GPL)',
+        4: 'GNU Library or "Lesser" General Public License (LGPL)',
+        5: 'MIT license',
+        6: 'Mozilla Public License 2.0',
+        7: 'Common Development and Distribution License',
+        8: 'Eclipse Public License'
     }
     prompt(banner(), options)
 
