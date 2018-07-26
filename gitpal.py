@@ -2,6 +2,16 @@
 
 import github
 
+LICENSES =  {
+    1: 'Apache 2.0',
+    2: 'BSD 3-Clause "New" pr "Revised" license',
+    3: 'GNU General Public License (GPL)',
+    4: 'GNU Library or "Lesser" General Public License (LGPL)',
+    5: 'MIT license',
+    6: 'Mozilla Public License 2.0',
+    7: 'Common Development and Distribution License',
+    8: 'Eclipse Public License'
+}
 
 def make_project(name, description, license):
     """Creates a new github project with the information provided
@@ -40,6 +50,8 @@ def prompt(banner, options):
         Nothing
     """
     print(banner)
+    print('Booting...\n')
+    git = github.Github()
     print("Let's make sure you don't forget that idea!\n")
     correct = False
     cli_prompt = '>> '
@@ -52,14 +64,14 @@ def prompt(banner, options):
         print(options_menu(options))
         license = input(cli_prompt) #TODO: Validate
         print('Lets review your input.\n')
-        print('  Name: ', name)
-        print('  Description: ', description)
-        print('  License: ', options[int(license)])
+        print('  Name: {}'.format(name))
+        print('  Description: {}'.format(description))
+        print('  License: {}'.format(options[int(license)]))
         print('Is everything correct? (yes, no)')
         ok = input(cli_prompt).lower()
         if ok == 'yes' or ok == 'y':
             correct = True
-            make_project(name, description, license)
+            git.make_project(name, description, license)
             print('Great, visit your github profile https://www.github.com/')
         else:
             print('Woops, lets go over the information again!')
@@ -81,17 +93,7 @@ def options_menu(options):
 
 
 def main():
-    options = {
-        1: 'Apache 2.0',
-        2: 'BSD 3-Clause "New" pr "Revised" license',
-        3: 'GNU General Public License (GPL)',
-        4: 'GNU Library or "Lesser" General Public License (LGPL)',
-        5: 'MIT license',
-        6: 'Mozilla Public License 2.0',
-        7: 'Common Development and Distribution License',
-        8: 'Eclipse Public License'
-    }
-    prompt(banner(), options)
+    prompt(banner(), LICENSES)
 
 
 if __name__ == '__main__':
